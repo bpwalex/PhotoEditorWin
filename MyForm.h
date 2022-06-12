@@ -10,7 +10,7 @@ namespace PhotoEditorWin {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Сводка для MyForm
+	/// вЂ”РІРѕРґРєР° РґР»В¤ MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
@@ -19,13 +19,13 @@ namespace PhotoEditorWin {
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			//TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		/// СњСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
 		/// </summary>
 		~MyForm()
 		{
@@ -41,9 +41,9 @@ namespace PhotoEditorWin {
 	private: System::Windows::Forms::ToolStripMenuItem^ saveAsToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ clearToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ filtersToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ drawingToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ eraserToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ pencilToolStripMenuItem;
+
+
+
 	private: System::Windows::Forms::PictureBox^ StartImg;
 	private: System::Windows::Forms::PictureBox^ ProcImg;
 
@@ -52,16 +52,25 @@ namespace PhotoEditorWin {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
 
+	private: System::Windows::Forms::CheckBox^ checkBox1;
+	private: System::Windows::Forms::CheckBox^ checkBox2;
+	private: System::Windows::Forms::TrackBar^ trackBar1;
+	private: System::Windows::Forms::CheckBox^ checkBox3;
+	private: System::Windows::Forms::CheckBox^ checkBox4;
+	private: System::Windows::Forms::CheckBox^ checkBox5;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
+	private: System::Windows::Forms::Label^ label3;
+
 	private:
 		/// <summary>
-		/// Обязательная переменная конструктора.
+		/// СњР±В¤Р·Р°С‚РµР»СЊРЅР°В¤ РїРµСЂРµРјРµРЅРЅР°В¤ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
+		/// вЂњСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»В¤ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° Р§ РЅРµ РёР·РјРµРЅВ¤Р№С‚Рµ 
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -71,17 +80,24 @@ namespace PhotoEditorWin {
 			this->saveAsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->clearToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->filtersToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->drawingToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->eraserToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->pencilToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->StartImg = (gcnew System::Windows::Forms::PictureBox());
 			this->ProcImg = (gcnew System::Windows::Forms::PictureBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
+			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
+			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox4 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox5 = (gcnew System::Windows::Forms::CheckBox());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StartImg))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ProcImg))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
+			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// openFileDialog1
@@ -91,13 +107,13 @@ namespace PhotoEditorWin {
 			// menuStrip1
 			// 
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->openToolStripMenuItem,
-					this->saveAsToolStripMenuItem, this->clearToolStripMenuItem, this->filtersToolStripMenuItem, this->drawingToolStripMenuItem
+					this->saveAsToolStripMenuItem, this->clearToolStripMenuItem, this->filtersToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(876, 28);
+			this->menuStrip1->Size = System::Drawing::Size(905, 28);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -128,28 +144,6 @@ namespace PhotoEditorWin {
 			this->filtersToolStripMenuItem->Size = System::Drawing::Size(62, 24);
 			this->filtersToolStripMenuItem->Text = L"Filters";
 			// 
-			// drawingToolStripMenuItem
-			// 
-			this->drawingToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->eraserToolStripMenuItem,
-					this->pencilToolStripMenuItem
-			});
-			this->drawingToolStripMenuItem->Name = L"drawingToolStripMenuItem";
-			this->drawingToolStripMenuItem->Size = System::Drawing::Size(79, 24);
-			this->drawingToolStripMenuItem->Text = L"Drawing";
-			// 
-			// eraserToolStripMenuItem
-			// 
-			this->eraserToolStripMenuItem->Name = L"eraserToolStripMenuItem";
-			this->eraserToolStripMenuItem->Size = System::Drawing::Size(132, 26);
-			this->eraserToolStripMenuItem->Text = L"Eraser";
-			// 
-			// pencilToolStripMenuItem
-			// 
-			this->pencilToolStripMenuItem->Name = L"pencilToolStripMenuItem";
-			this->pencilToolStripMenuItem->Size = System::Drawing::Size(132, 26);
-			this->pencilToolStripMenuItem->Text = L"Pencil";
-			// 
 			// StartImg
 			// 
 			this->StartImg->BackColor = System::Drawing::SystemColors::ButtonHighlight;
@@ -162,7 +156,7 @@ namespace PhotoEditorWin {
 			// ProcImg
 			// 
 			this->ProcImg->BackColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->ProcImg->Location = System::Drawing::Point(466, 188);
+			this->ProcImg->Location = System::Drawing::Point(515, 188);
 			this->ProcImg->Name = L"ProcImg";
 			this->ProcImg->Size = System::Drawing::Size(375, 244);
 			this->ProcImg->TabIndex = 2;
@@ -186,11 +180,95 @@ namespace PhotoEditorWin {
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"YCurPos";
 			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->Location = System::Drawing::Point(14, 31);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(72, 21);
+			this->checkBox1->TabIndex = 6;
+			this->checkBox1->Text = L"Eraser";
+			this->checkBox1->UseVisualStyleBackColor = true;
+			// 
+			// checkBox2
+			// 
+			this->checkBox2->AutoSize = true;
+			this->checkBox2->Location = System::Drawing::Point(14, 64);
+			this->checkBox2->Name = L"checkBox2";
+			this->checkBox2->Size = System::Drawing::Size(55, 21);
+			this->checkBox2->TabIndex = 7;
+			this->checkBox2->Text = L"Pen";
+			this->checkBox2->UseVisualStyleBackColor = true;
+			// 
+			// trackBar1
+			// 
+			this->trackBar1->LargeChange = 1;
+			this->trackBar1->Location = System::Drawing::Point(142, 64);
+			this->trackBar1->Name = L"trackBar1";
+			this->trackBar1->Size = System::Drawing::Size(247, 56);
+			this->trackBar1->TabIndex = 8;
+			// 
+			// checkBox3
+			// 
+			this->checkBox3->AutoSize = true;
+			this->checkBox3->Location = System::Drawing::Point(444, 31);
+			this->checkBox3->Name = L"checkBox3";
+			this->checkBox3->Size = System::Drawing::Size(56, 21);
+			this->checkBox3->TabIndex = 9;
+			this->checkBox3->Text = L"Red";
+			this->checkBox3->UseVisualStyleBackColor = true;
+			// 
+			// checkBox4
+			// 
+			this->checkBox4->AutoSize = true;
+			this->checkBox4->Location = System::Drawing::Point(444, 64);
+			this->checkBox4->Name = L"checkBox4";
+			this->checkBox4->Size = System::Drawing::Size(58, 21);
+			this->checkBox4->TabIndex = 10;
+			this->checkBox4->Text = L"Blue";
+			this->checkBox4->UseVisualStyleBackColor = true;
+			// 
+			// checkBox5
+			// 
+			this->checkBox5->AutoSize = true;
+			this->checkBox5->Location = System::Drawing::Point(444, 98);
+			this->checkBox5->Name = L"checkBox5";
+			this->checkBox5->Size = System::Drawing::Size(70, 21);
+			this->checkBox5->TabIndex = 11;
+			this->checkBox5->Text = L"Green";
+			this->checkBox5->UseVisualStyleBackColor = true;
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Controls->Add(this->label3);
+			this->groupBox1->Controls->Add(this->checkBox5);
+			this->groupBox1->Controls->Add(this->checkBox1);
+			this->groupBox1->Controls->Add(this->checkBox4);
+			this->groupBox1->Controls->Add(this->checkBox2);
+			this->groupBox1->Controls->Add(this->checkBox3);
+			this->groupBox1->Controls->Add(this->trackBar1);
+			this->groupBox1->Location = System::Drawing::Point(359, 31);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(531, 130);
+			this->groupBox1->TabIndex = 12;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Drawing";
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(230, 32);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(72, 17);
+			this->label3->TabIndex = 12;
+			this->label3->Text = L"Thickness";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(876, 498);
+			this->ClientSize = System::Drawing::Size(905, 451);
+			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->ProcImg);
@@ -203,6 +281,9 @@ namespace PhotoEditorWin {
 			this->menuStrip1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StartImg))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ProcImg))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->EndInit();
+			this->groupBox1->ResumeLayout(false);
+			this->groupBox1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
