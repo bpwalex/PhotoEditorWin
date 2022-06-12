@@ -10,7 +10,7 @@ namespace PhotoEditorWin {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// —водка дл¤ MyForm
+	/// ������ ��� MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
@@ -19,13 +19,13 @@ namespace PhotoEditorWin {
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			//TODO: �������� ��� ������������
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// ќсвободить все используемые ресурсы.
+		/// ���������� ��� ������������ �������.
 		/// </summary>
 		~MyForm()
 		{
@@ -63,14 +63,14 @@ namespace PhotoEditorWin {
 
 	private:
 		/// <summary>
-		/// ќб¤зательна¤ переменна¤ конструктора.
+		/// ������������ ���������� ������������.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// “ребуемый метод дл¤ поддержки конструктора Ч не измен¤йте 
-		/// содержимое этого метода с помощью редактора кода.
+		/// ��������� ����� ��� ��������� ������������ � �� ��������� 
+		/// ���������� ����� ������ � ������� ��������� ����.
 		/// </summary>
 		void InitializeComponent(void)
 		{
