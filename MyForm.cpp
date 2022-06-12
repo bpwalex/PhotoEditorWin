@@ -8,5 +8,3 @@ void main(array<String^>^ args) {
 	PhotoEditorWin::MyForm form;
 	Application::Run(% form);
 }
-
-
