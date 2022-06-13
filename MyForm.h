@@ -52,16 +52,22 @@ namespace PhotoEditorWin {
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
 
-	private: System::Windows::Forms::CheckBox^ checkBox1;
-	private: System::Windows::Forms::CheckBox^ checkBox2;
 
-	private: System::Windows::Forms::CheckBox^ checkBox3;
-	private: System::Windows::Forms::CheckBox^ checkBox4;
-	private: System::Windows::Forms::CheckBox^ checkBox5;
+
+
+
+	private: System::Windows::Forms::CheckBox^ red_cb;
+	private: System::Windows::Forms::CheckBox^ blue_cb;
+	private: System::Windows::Forms::CheckBox^ green_cb;
+
+
+
+
 	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::ToolStripMenuItem^ copyImageToolStripMenuItem;
-	private: System::Windows::Forms::CheckBox^ draw_box;
+	private: System::Windows::Forms::CheckBox^ draw_cb;
+
 
 	private: System::Windows::Forms::NumericUpDown^ tnickness_nud;
 
@@ -91,14 +97,12 @@ namespace PhotoEditorWin {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
-			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox4 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox5 = (gcnew System::Windows::Forms::CheckBox());
+			this->red_cb = (gcnew System::Windows::Forms::CheckBox());
+			this->blue_cb = (gcnew System::Windows::Forms::CheckBox());
+			this->green_cb = (gcnew System::Windows::Forms::CheckBox());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->tnickness_nud = (gcnew System::Windows::Forms::NumericUpDown());
-			this->draw_box = (gcnew System::Windows::Forms::CheckBox());
+			this->draw_cb = (gcnew System::Windows::Forms::CheckBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StartImg))->BeginInit();
@@ -195,66 +199,44 @@ namespace PhotoEditorWin {
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"YCurPos";
 			// 
-			// checkBox1
+			// red_cb
 			// 
-			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(14, 64);
-			this->checkBox1->Name = L"checkBox1";
-			this->checkBox1->Size = System::Drawing::Size(72, 21);
-			this->checkBox1->TabIndex = 6;
-			this->checkBox1->Text = L"Eraser";
-			this->checkBox1->UseVisualStyleBackColor = true;
+			this->red_cb->AutoSize = true;
+			this->red_cb->Location = System::Drawing::Point(444, 31);
+			this->red_cb->Name = L"red_cb";
+			this->red_cb->Size = System::Drawing::Size(56, 21);
+			this->red_cb->TabIndex = 9;
+			this->red_cb->Text = L"Red";
+			this->red_cb->UseVisualStyleBackColor = true;
 			// 
-			// checkBox2
+			// blue_cb
 			// 
-			this->checkBox2->AutoSize = true;
-			this->checkBox2->Location = System::Drawing::Point(14, 98);
-			this->checkBox2->Name = L"checkBox2";
-			this->checkBox2->Size = System::Drawing::Size(55, 21);
-			this->checkBox2->TabIndex = 7;
-			this->checkBox2->Text = L"Pen";
-			this->checkBox2->UseVisualStyleBackColor = true;
+			this->blue_cb->AutoSize = true;
+			this->blue_cb->Location = System::Drawing::Point(444, 64);
+			this->blue_cb->Name = L"blue_cb";
+			this->blue_cb->Size = System::Drawing::Size(58, 21);
+			this->blue_cb->TabIndex = 10;
+			this->blue_cb->Text = L"Blue";
+			this->blue_cb->UseVisualStyleBackColor = true;
 			// 
-			// checkBox3
+			// green_cb
 			// 
-			this->checkBox3->AutoSize = true;
-			this->checkBox3->Location = System::Drawing::Point(444, 31);
-			this->checkBox3->Name = L"checkBox3";
-			this->checkBox3->Size = System::Drawing::Size(56, 21);
-			this->checkBox3->TabIndex = 9;
-			this->checkBox3->Text = L"Red";
-			this->checkBox3->UseVisualStyleBackColor = true;
-			// 
-			// checkBox4
-			// 
-			this->checkBox4->AutoSize = true;
-			this->checkBox4->Location = System::Drawing::Point(444, 64);
-			this->checkBox4->Name = L"checkBox4";
-			this->checkBox4->Size = System::Drawing::Size(58, 21);
-			this->checkBox4->TabIndex = 10;
-			this->checkBox4->Text = L"Blue";
-			this->checkBox4->UseVisualStyleBackColor = true;
-			// 
-			// checkBox5
-			// 
-			this->checkBox5->AutoSize = true;
-			this->checkBox5->Location = System::Drawing::Point(444, 98);
-			this->checkBox5->Name = L"checkBox5";
-			this->checkBox5->Size = System::Drawing::Size(70, 21);
-			this->checkBox5->TabIndex = 11;
-			this->checkBox5->Text = L"Green";
-			this->checkBox5->UseVisualStyleBackColor = true;
+			this->green_cb->AutoSize = true;
+			this->green_cb->Location = System::Drawing::Point(444, 98);
+			this->green_cb->Name = L"green_cb";
+			this->green_cb->Size = System::Drawing::Size(70, 21);
+			this->green_cb->TabIndex = 11;
+			this->green_cb->Text = L"Green";
+			this->green_cb->UseVisualStyleBackColor = true;
 			// 
 			// groupBox1
 			// 
 			this->groupBox1->Controls->Add(this->tnickness_nud);
-			this->groupBox1->Controls->Add(this->draw_box);
+			this->groupBox1->Controls->Add(this->draw_cb);
 			this->groupBox1->Controls->Add(this->label3);
-			this->groupBox1->Controls->Add(this->checkBox5);
-			this->groupBox1->Controls->Add(this->checkBox1);
-			this->groupBox1->Controls->Add(this->checkBox4);
-			this->groupBox1->Controls->Add(this->checkBox2);
-			this->groupBox1->Controls->Add(this->checkBox3);
+			this->groupBox1->Controls->Add(this->green_cb);
+			this->groupBox1->Controls->Add(this->blue_cb);
+			this->groupBox1->Controls->Add(this->red_cb);
 			this->groupBox1->Location = System::Drawing::Point(362, 41);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Size = System::Drawing::Size(531, 130);
@@ -273,15 +255,15 @@ namespace PhotoEditorWin {
 			this->tnickness_nud->TabIndex = 14;
 			this->tnickness_nud->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
-			// draw_box
+			// draw_cb
 			// 
-			this->draw_box->AutoSize = true;
-			this->draw_box->Location = System::Drawing::Point(14, 28);
-			this->draw_box->Name = L"draw_box";
-			this->draw_box->Size = System::Drawing::Size(72, 21);
-			this->draw_box->TabIndex = 13;
-			this->draw_box->Text = L"DRAW";
-			this->draw_box->UseVisualStyleBackColor = true;
+			this->draw_cb->AutoSize = true;
+			this->draw_cb->Location = System::Drawing::Point(14, 28);
+			this->draw_cb->Name = L"draw_cb";
+			this->draw_cb->Size = System::Drawing::Size(72, 21);
+			this->draw_cb->TabIndex = 13;
+			this->draw_cb->Text = L"DRAW";
+			this->draw_cb->UseVisualStyleBackColor = true;
 			// 
 			// label3
 			// 
@@ -322,6 +304,7 @@ namespace PhotoEditorWin {
 		Bitmap^ open_img = nullptr;
 		Bitmap^ copy_img = nullptr;
 		Bitmap^ save_img = nullptr;
+		Bitmap^ proc_img = nullptr;
 private: System::Void openToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 	{
@@ -356,23 +339,64 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
 }
 private: System::Void ProcImg_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 	if (ProcImg->Image != nullptr) {
-		if (draw_box->Checked == true) {
-			int thick = static_cast<int>(tnickness_nud->Value);
-			for (int i = -((thick - 1) / 2); i < ((thick - 1) / 2); i++) {
-				for (int j = -((thick - 1) / 2); j < ((thick - 1) / 2); j++) {
-					if (e->Button == System::Windows::Forms::MouseButtons::Left) {
-						//
-					}
-					else {
-						;
+		proc_img = gcnew Bitmap(StartImg->Width, StartImg->Height);
+		if (draw_cb->Checked == true) {
+			if (red_cb->Checked == true) {
+				int thick = static_cast<int>(tnickness_nud->Value);
+				for (int i = -((thick - 1) / 2); i < ((thick - 1) / 2); i++) {
+					for (int j = -((thick - 1) / 2); j < ((thick - 1) / 2); j++) {
+						if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+							proc_img->SetPixel(e->X, e->Y, System::Drawing::Color::Red);
+						}
+						else {
+							;
+						}
 					}
 				}
 			}
+			//
+			else if (blue_cb->Checked == true) {
+				int thick = static_cast<int>(tnickness_nud->Value);
+				for (int i = -((thick - 1) / 2); i < ((thick - 1) / 2); i++) {
+					for (int j = -((thick - 1) / 2); j < ((thick - 1) / 2); j++) {
+						if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+							if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+								proc_img->SetPixel(e->X, e->Y, System::Drawing::Color::Blue);
+							}
+						}
+						else {
+							;
+						}
+					}
+				}
+			}
+			//
+			else if (green_cb->Checked == true) {
+				int thick = static_cast<int>(tnickness_nud->Value);
+				for (int i = -((thick - 1) / 2); i < ((thick - 1) / 2); i++) {
+					for (int j = -((thick - 1) / 2); j < ((thick - 1) / 2); j++) {
+						if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+							if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+								proc_img->SetPixel(e->X, e->Y, System::Drawing::Color::Green);
+							}
+						}
+						else {
+							;
+						}
+					}
+				}
+			}
+			else {
+				MessageBox::Show("Choose color");
+			}
 		}
-		if (draw_box->Checked == false) {
-			;
+		else{
+			MessageBox::Show("Click on draw option");
 		}
 	}	
+	else {
+		MessageBox::Show("No processed image");
+	}
 }
 };
 };
