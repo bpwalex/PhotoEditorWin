@@ -54,12 +54,16 @@ namespace PhotoEditorWin {
 
 	private: System::Windows::Forms::CheckBox^ checkBox1;
 	private: System::Windows::Forms::CheckBox^ checkBox2;
-	private: System::Windows::Forms::TrackBar^ trackBar1;
+
 	private: System::Windows::Forms::CheckBox^ checkBox3;
 	private: System::Windows::Forms::CheckBox^ checkBox4;
 	private: System::Windows::Forms::CheckBox^ checkBox5;
 	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::ToolStripMenuItem^ copyImageToolStripMenuItem;
+	private: System::Windows::Forms::CheckBox^ checkBox6;
+	private: System::Windows::Forms::NumericUpDown^ tnickness_nud;
+
 
 	private:
 		/// <summary>
@@ -80,6 +84,7 @@ namespace PhotoEditorWin {
 			this->saveAsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->clearToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->filtersToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->copyImageToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->StartImg = (gcnew System::Windows::Forms::PictureBox());
 			this->ProcImg = (gcnew System::Windows::Forms::PictureBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -87,17 +92,18 @@ namespace PhotoEditorWin {
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
-			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
 			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox4 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox5 = (gcnew System::Windows::Forms::CheckBox());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->checkBox6 = (gcnew System::Windows::Forms::CheckBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->tnickness_nud = (gcnew System::Windows::Forms::NumericUpDown());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StartImg))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ProcImg))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			this->groupBox1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->tnickness_nud))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// openFileDialog1
@@ -107,9 +113,9 @@ namespace PhotoEditorWin {
 			// menuStrip1
 			// 
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->openToolStripMenuItem,
-					this->saveAsToolStripMenuItem, this->clearToolStripMenuItem, this->filtersToolStripMenuItem
+					this->saveAsToolStripMenuItem, this->clearToolStripMenuItem, this->filtersToolStripMenuItem, this->copyImageToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -143,6 +149,13 @@ namespace PhotoEditorWin {
 			this->filtersToolStripMenuItem->Name = L"filtersToolStripMenuItem";
 			this->filtersToolStripMenuItem->Size = System::Drawing::Size(62, 24);
 			this->filtersToolStripMenuItem->Text = L"Filters";
+			// 
+			// copyImageToolStripMenuItem
+			// 
+			this->copyImageToolStripMenuItem->Name = L"copyImageToolStripMenuItem";
+			this->copyImageToolStripMenuItem->Size = System::Drawing::Size(99, 24);
+			this->copyImageToolStripMenuItem->Text = L"CopyImage";
+			this->copyImageToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::copyImageToolStripMenuItem_Click);
 			// 
 			// StartImg
 			// 
@@ -183,7 +196,7 @@ namespace PhotoEditorWin {
 			// checkBox1
 			// 
 			this->checkBox1->AutoSize = true;
-			this->checkBox1->Location = System::Drawing::Point(14, 31);
+			this->checkBox1->Location = System::Drawing::Point(14, 64);
 			this->checkBox1->Name = L"checkBox1";
 			this->checkBox1->Size = System::Drawing::Size(72, 21);
 			this->checkBox1->TabIndex = 6;
@@ -193,20 +206,12 @@ namespace PhotoEditorWin {
 			// checkBox2
 			// 
 			this->checkBox2->AutoSize = true;
-			this->checkBox2->Location = System::Drawing::Point(14, 64);
+			this->checkBox2->Location = System::Drawing::Point(14, 98);
 			this->checkBox2->Name = L"checkBox2";
 			this->checkBox2->Size = System::Drawing::Size(55, 21);
 			this->checkBox2->TabIndex = 7;
 			this->checkBox2->Text = L"Pen";
 			this->checkBox2->UseVisualStyleBackColor = true;
-			// 
-			// trackBar1
-			// 
-			this->trackBar1->LargeChange = 1;
-			this->trackBar1->Location = System::Drawing::Point(142, 64);
-			this->trackBar1->Name = L"trackBar1";
-			this->trackBar1->Size = System::Drawing::Size(247, 56);
-			this->trackBar1->TabIndex = 8;
 			// 
 			// checkBox3
 			// 
@@ -240,19 +245,30 @@ namespace PhotoEditorWin {
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->tnickness_nud);
+			this->groupBox1->Controls->Add(this->checkBox6);
 			this->groupBox1->Controls->Add(this->label3);
 			this->groupBox1->Controls->Add(this->checkBox5);
 			this->groupBox1->Controls->Add(this->checkBox1);
 			this->groupBox1->Controls->Add(this->checkBox4);
 			this->groupBox1->Controls->Add(this->checkBox2);
 			this->groupBox1->Controls->Add(this->checkBox3);
-			this->groupBox1->Controls->Add(this->trackBar1);
-			this->groupBox1->Location = System::Drawing::Point(359, 31);
+			this->groupBox1->Location = System::Drawing::Point(362, 41);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Size = System::Drawing::Size(531, 130);
 			this->groupBox1->TabIndex = 12;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Drawing";
+			// 
+			// checkBox6
+			// 
+			this->checkBox6->AutoSize = true;
+			this->checkBox6->Location = System::Drawing::Point(14, 28);
+			this->checkBox6->Name = L"checkBox6";
+			this->checkBox6->Size = System::Drawing::Size(72, 21);
+			this->checkBox6->TabIndex = 13;
+			this->checkBox6->Text = L"DRAW";
+			this->checkBox6->UseVisualStyleBackColor = true;
 			// 
 			// label3
 			// 
@@ -262,6 +278,17 @@ namespace PhotoEditorWin {
 			this->label3->Size = System::Drawing::Size(72, 17);
 			this->label3->TabIndex = 12;
 			this->label3->Text = L"Thickness";
+			// 
+			// tnickness_nud
+			// 
+			this->tnickness_nud->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
+			this->tnickness_nud->Location = System::Drawing::Point(209, 63);
+			this->tnickness_nud->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 11, 0, 0, 0 });
+			this->tnickness_nud->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			this->tnickness_nud->Name = L"tnickness_nud";
+			this->tnickness_nud->Size = System::Drawing::Size(120, 22);
+			this->tnickness_nud->TabIndex = 14;
+			this->tnickness_nud->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
 			// MyForm
 			// 
@@ -277,13 +304,14 @@ namespace PhotoEditorWin {
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StartImg))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ProcImg))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->EndInit();
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->tnickness_nud))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -314,5 +342,13 @@ private: System::Void saveAsToolStripMenuItem_Click(System::Object^ sender, Syst
 		}
 	}
 }
-	};
+private: System::Void copyImageToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (StartImg->Image != nullptr) {
+		ProcImg->Image = StartImg->Image;
+	}
+}
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	tnickness_nud->ReadOnly = true;
+}
+};
 };
