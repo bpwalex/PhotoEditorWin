@@ -61,7 +61,8 @@ namespace PhotoEditorWin {
 	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::ToolStripMenuItem^ copyImageToolStripMenuItem;
-	private: System::Windows::Forms::CheckBox^ checkBox6;
+	private: System::Windows::Forms::CheckBox^ draw_box;
+
 	private: System::Windows::Forms::NumericUpDown^ tnickness_nud;
 
 
@@ -96,9 +97,9 @@ namespace PhotoEditorWin {
 			this->checkBox4 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox5 = (gcnew System::Windows::Forms::CheckBox());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->checkBox6 = (gcnew System::Windows::Forms::CheckBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->tnickness_nud = (gcnew System::Windows::Forms::NumericUpDown());
+			this->draw_box = (gcnew System::Windows::Forms::CheckBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StartImg))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ProcImg))->BeginInit();
@@ -174,6 +175,7 @@ namespace PhotoEditorWin {
 			this->ProcImg->Size = System::Drawing::Size(375, 244);
 			this->ProcImg->TabIndex = 2;
 			this->ProcImg->TabStop = false;
+			this->ProcImg->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::ProcImg_MouseClick);
 			// 
 			// label1
 			// 
@@ -246,7 +248,7 @@ namespace PhotoEditorWin {
 			// groupBox1
 			// 
 			this->groupBox1->Controls->Add(this->tnickness_nud);
-			this->groupBox1->Controls->Add(this->checkBox6);
+			this->groupBox1->Controls->Add(this->draw_box);
 			this->groupBox1->Controls->Add(this->label3);
 			this->groupBox1->Controls->Add(this->checkBox5);
 			this->groupBox1->Controls->Add(this->checkBox1);
@@ -260,25 +262,6 @@ namespace PhotoEditorWin {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Drawing";
 			// 
-			// checkBox6
-			// 
-			this->checkBox6->AutoSize = true;
-			this->checkBox6->Location = System::Drawing::Point(14, 28);
-			this->checkBox6->Name = L"checkBox6";
-			this->checkBox6->Size = System::Drawing::Size(72, 21);
-			this->checkBox6->TabIndex = 13;
-			this->checkBox6->Text = L"DRAW";
-			this->checkBox6->UseVisualStyleBackColor = true;
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(230, 32);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(72, 17);
-			this->label3->TabIndex = 12;
-			this->label3->Text = L"Thickness";
-			// 
 			// tnickness_nud
 			// 
 			this->tnickness_nud->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
@@ -289,6 +272,25 @@ namespace PhotoEditorWin {
 			this->tnickness_nud->Size = System::Drawing::Size(120, 22);
 			this->tnickness_nud->TabIndex = 14;
 			this->tnickness_nud->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			// 
+			// draw_box
+			// 
+			this->draw_box->AutoSize = true;
+			this->draw_box->Location = System::Drawing::Point(14, 28);
+			this->draw_box->Name = L"draw_box";
+			this->draw_box->Size = System::Drawing::Size(72, 21);
+			this->draw_box->TabIndex = 13;
+			this->draw_box->Text = L"DRAW";
+			this->draw_box->UseVisualStyleBackColor = true;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(230, 32);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(72, 17);
+			this->label3->TabIndex = 12;
+			this->label3->Text = L"Thickness";
 			// 
 			// MyForm
 			// 
@@ -317,7 +319,9 @@ namespace PhotoEditorWin {
 
 		}
 #pragma endregion
-
+		Bitmap^ open_img = nullptr;
+		Bitmap^ copy_img = nullptr;
+		Bitmap^ save_img = nullptr;
 private: System::Void openToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 	{
@@ -336,7 +340,6 @@ private: System::Void saveAsToolStripMenuItem_Click(System::Object^ sender, Syst
 		SaveFileDialog^ saveFileDialog1 = gcnew SaveFileDialog;		
 		if (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 		{
-
 			Bitmap^ save_img = gcnew Bitmap(StartImg->Image);
 			save_img->Save(saveFileDialog1->FileName);
 		}
@@ -344,11 +347,32 @@ private: System::Void saveAsToolStripMenuItem_Click(System::Object^ sender, Syst
 }
 private: System::Void copyImageToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (StartImg->Image != nullptr) {
-		ProcImg->Image = StartImg->Image;
+	    Bitmap^ copy_img = gcnew Bitmap(StartImg->Image);
+		ProcImg->Image = copy_img;
 	}
 }
 private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	tnickness_nud->ReadOnly = true;
+}
+private: System::Void ProcImg_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (ProcImg->Image != nullptr) {
+		if (draw_box->Checked == true) {
+			int thick = static_cast<int>(tnickness_nud->Value);
+			for (int i = -((thick - 1) / 2); i < ((thick - 1) / 2); i++) {
+				for (int j = -((thick - 1) / 2); j < ((thick - 1) / 2); j++) {
+					if (e->Button == System::Windows::Forms::MouseButtons::Left) {
+						//
+					}
+					else {
+						;
+					}
+				}
+			}
+		}
+		if (draw_box->Checked == false) {
+			;
+		}
+	}	
 }
 };
 };
