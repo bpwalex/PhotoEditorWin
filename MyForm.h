@@ -73,6 +73,7 @@ namespace PhotoEditorWin {
 	private: System::Windows::Forms::NumericUpDown^ tnickness_nud;
 	private: System::Windows::Forms::Label^ x_pos;
 	private: System::Windows::Forms::Label^ y_pos;
+	private: System::Windows::Forms::ToolStripMenuItem^ negativeToolStripMenuItem;
 
 
 	private:
@@ -109,6 +110,7 @@ namespace PhotoEditorWin {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->x_pos = (gcnew System::Windows::Forms::Label());
 			this->y_pos = (gcnew System::Windows::Forms::Label());
+			this->negativeToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StartImg))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ProcImg))->BeginInit();
@@ -129,41 +131,42 @@ namespace PhotoEditorWin {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(905, 30);
+			this->menuStrip1->Size = System::Drawing::Size(905, 28);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
 			// openToolStripMenuItem
 			// 
 			this->openToolStripMenuItem->Name = L"openToolStripMenuItem";
-			this->openToolStripMenuItem->Size = System::Drawing::Size(59, 26);
+			this->openToolStripMenuItem->Size = System::Drawing::Size(59, 24);
 			this->openToolStripMenuItem->Text = L"Open";
 			this->openToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::openToolStripMenuItem_Click);
 			// 
 			// saveAsToolStripMenuItem
 			// 
 			this->saveAsToolStripMenuItem->Name = L"saveAsToolStripMenuItem";
-			this->saveAsToolStripMenuItem->Size = System::Drawing::Size(70, 26);
+			this->saveAsToolStripMenuItem->Size = System::Drawing::Size(70, 24);
 			this->saveAsToolStripMenuItem->Text = L"SaveAs";
 			this->saveAsToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::saveAsToolStripMenuItem_Click);
 			// 
 			// clearToolStripMenuItem
 			// 
 			this->clearToolStripMenuItem->Name = L"clearToolStripMenuItem";
-			this->clearToolStripMenuItem->Size = System::Drawing::Size(107, 26);
+			this->clearToolStripMenuItem->Size = System::Drawing::Size(107, 24);
 			this->clearToolStripMenuItem->Text = L"ClearAllImgs";
 			this->clearToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::clearToolStripMenuItem_Click);
 			// 
 			// filtersToolStripMenuItem
 			// 
+			this->filtersToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->negativeToolStripMenuItem });
 			this->filtersToolStripMenuItem->Name = L"filtersToolStripMenuItem";
-			this->filtersToolStripMenuItem->Size = System::Drawing::Size(62, 26);
+			this->filtersToolStripMenuItem->Size = System::Drawing::Size(62, 24);
 			this->filtersToolStripMenuItem->Text = L"Filters";
 			// 
 			// copyImageToolStripMenuItem
 			// 
 			this->copyImageToolStripMenuItem->Name = L"copyImageToolStripMenuItem";
-			this->copyImageToolStripMenuItem->Size = System::Drawing::Size(99, 26);
+			this->copyImageToolStripMenuItem->Size = System::Drawing::Size(99, 24);
 			this->copyImageToolStripMenuItem->Text = L"CopyImage";
 			this->copyImageToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::copyImageToolStripMenuItem_Click);
 			// 
@@ -295,6 +298,13 @@ namespace PhotoEditorWin {
 			this->y_pos->Size = System::Drawing::Size(0, 17);
 			this->y_pos->TabIndex = 14;
 			// 
+			// negativeToolStripMenuItem
+			// 
+			this->negativeToolStripMenuItem->Name = L"negativeToolStripMenuItem";
+			this->negativeToolStripMenuItem->Size = System::Drawing::Size(224, 26);
+			this->negativeToolStripMenuItem->Text = L"Negative";
+			this->negativeToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::negativeToolStripMenuItem_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -349,7 +359,7 @@ private: System::Void saveAsToolStripMenuItem_Click(System::Object^ sender, Syst
 }
 private: System::Void copyImageToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (StartImg->Image != nullptr) {
-	    Bitmap^ copy_img = gcnew Bitmap(StartImg->Image);
+		Bitmap^ copy_img = gcnew Bitmap(StartImg->Image);
 		ProcImg->Image = copy_img;
 	}
 }
@@ -432,6 +442,21 @@ private: System::Void ProcImg_MouseMove_1(System::Object^ sender, System::Window
 			MessageBox::Show("No processed image");
 			r += 1;
 		}
+	}
+}
+private: System::Void negativeToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (ProcImg->Image != nullptr) {
+		Bitmap^ neg_img = gcnew Bitmap(ProcImg->Image);
+		for (int i = 0; i < neg_img->Width; i++) {
+			for (int j = 0; j < neg_img->Height; j++) {
+				Color px_color = neg_img->GetPixel(i, j);
+				int px_red = 255 - px_color.R;
+				int px_green = 255 - px_color.G;
+				int px_blue = 255 - px_color.B;
+				neg_img->SetPixel(i, j, Color::FromArgb(px_red, px_green, px_blue));
+			}
+		}
+		ProcImg->Image = neg_img;
 	}
 }
 };
